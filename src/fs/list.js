@@ -5,7 +5,14 @@ const list = async () => {
 	const src = new URL('files\\', import.meta.url);
 	
 	readdir(src, (err, files) => {
-		if (err) throw errOperationFailed;
+		if (err) {
+			if (err.code === 'ENOENT') {
+				throw errOperationFailed;
+			}
+
+			throw err;
+		}
+
 		files.forEach(file => {
 			console.log(file);
 		});

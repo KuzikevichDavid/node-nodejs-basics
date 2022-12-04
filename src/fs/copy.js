@@ -5,11 +5,25 @@ const copy = async () => {
 	const dest = new URL('files_copy\\', import.meta.url);
 	const src = new URL('files\\', import.meta.url);
 	
-	mkdir(dest, { recursive: false }, (err) => {
-		if (err) throw errOperationFailed;
+	mkdir(dest, (err) => {
+		if (err) {
+			if (err.code === 'EEXIST') {
+				throw errOperationFailed;
+			}
+
+			throw err;
+		}
 	});
 	
 	readdir(src, (err, files) => {
+		if (err) {
+			if (err.code === 'ENOENT') {
+				throw errOperationFailed;
+			}
+
+			throw err;
+		}
+		
 		files.forEach(file => {
 			copyFile(new URL(file, src) , new URL(file, dest), (err) => {
 				if (err) throw err;

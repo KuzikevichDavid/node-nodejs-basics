@@ -5,7 +5,13 @@ const remove = async () => {
 	const path = new URL('files/fileToRemove.txt', import.meta.url);
 	
     rm (path, (err) => {
-		if (err) throw errOperationFailed;
+		if (err) {
+			if (err.code === 'ENOENT') {
+				throw errOperationFailed;
+			}
+
+			throw err;
+		}
 	});
 };
 

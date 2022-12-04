@@ -1,5 +1,5 @@
-import { Transform } from 'stream'
-import { stdin, stdout } from 'process'
+import { Transform } from 'node:stream'
+import { stdin, stdout } from 'node:process'
 
 const transform = async () => {	
     const reverseable = new Transform({

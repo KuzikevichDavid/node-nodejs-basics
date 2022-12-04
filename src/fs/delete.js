@@ -1,8 +1,8 @@
-import { rm } from "fs"
+import { rm } from 'node:fs'
 
 const remove = async () => {
-	const errOperationFailed = new Error("FS operation failed");
-	const path = new URL("files/fileToRemove.txt", import.meta.url);
+	const errOperationFailed = new Error('FS operation failed');
+	const path = new URL('files/fileToRemove.txt', import.meta.url);
 	
     rm (path, (err) => {
 		if (err) throw errOperationFailed;

@@ -1,8 +1,8 @@
-import { readFile } from 'fs'
-import { createHash } from 'crypto'
+import { readFile } from 'node:fs'
+import { createHash } from 'node:crypto'
 
 const calculateHash = async () => {
-	const path = new URL("files/fileToCalculateHashFor.txt", import.meta.url);
+	const path = new URL('files/fileToCalculateHashFor.txt', import.meta.url);
     readFile(path, (err, dataBuffer) => {
 		if (err) throw err;
 

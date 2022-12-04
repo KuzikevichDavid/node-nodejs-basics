@@ -1,12 +1,10 @@
-import { open, close, write } from "fs"
-import { Buffer } from 'buffer';
+import { open, close, write } from 'node:fs'
+import { Buffer } from 'node:buffer';
 
 const create = async () => {
-	const errOperationFailed = new Error("FS operation failed");
-	const path = new URL("files/fresh.txt", import.meta.url);
-
+	const errOperationFailed = new Error('FS operation failed');
+	const path = new URL('files/fresh.txt', import.meta.url);
 	const buffer = Buffer.from('I am fresh and young');
-	
 	
     open(path, 'wx', (err, fd) => {
 		if (err) {

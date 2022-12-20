@@ -11,7 +11,7 @@ const performCalculations = async () => {
         worker.on('message', (message) => {
             result[i] = { status: 'resolved', data: message };
         }).on('error', (err) => {
-            result[i] = { status: 'error', data: err };
+            result[i] = { status: 'error', data: null };
         }).on('exit', (code) => {
             workersCompleted++;
             if (workersCompleted == workersCount) console.log(result);
